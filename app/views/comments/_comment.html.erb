@@ -1,0 +1,33 @@
+<div class="comment-<%=comment.id%> my-4">
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex flex-row align-items-center">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar" width="25"
+                  height="25" />
+          <div class="small mb-0 ms-2"><strong><%=comment.user.name%></strong>
+            <span class="mx-2"><%=time_ago_in_words(comment.created_at)%> ago</span>
+          </div>
+        </div>
+        <div class="d-flex flex-row align-items-center">
+          <p class="small text-muted mb-0">Upvote?</p>
+          <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
+          <%if comment.user == current_user %>
+            <%#= button_to "edit", @post, method: :delete , class: "btn btn-primary mx-2" %>
+            <%= button_to "delete", [post, comment], method: :delete , class: "btn btn-danger mx-2" %>
+          <% else %>
+            <p class="small text-muted mb-0">3</p>
+          <% end %>
+        </div>
+      </div>
+      <p><%=comment.body%></p>
+    </div>
+  </div>
+</div>
+<%#Trong đoạn mã này, [post, comment] đại diện cho một mảng gồm hai phần tử. 
+Phần tử đầu tiên (post) là một đối tượng của lớp Post, và phần tử thứ hai (comment) là một đối tượng của lớp Comment. 
+Mảng này chỉ định đối tượng bài viết (post) và bình luận (comment) mà nút xóa sẽ thao tác.
+
+Khi nút xóa được nhấn, Rails sẽ xác định địa chỉ URL xóa tương ứng dựa trên các đối tượng trong mảng [post, comment].
+Ví dụ, địa chỉ URL có thể được xác định là /posts/1/comments/2, trong đó 1 là ID của bài viết (post) và 2 là ID của bình luận (comment). 
+Rails sử dụng các thông tin này để thực hiện yêu cầu xóa dữ liệu tương ứng.%>

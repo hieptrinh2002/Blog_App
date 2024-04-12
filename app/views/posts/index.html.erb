@@ -1,0 +1,22 @@
+<div class="container mb-5">
+  <p style="color: green"><%= notice %></p>
+  <h1>Posts</h1>
+  <div id="posts">
+    <% @posts.each do |post| %>
+      <%
+        #  Dòng mã này sử dụng đối tượng post trực tiếp 
+        #  để render một partial view có tên là _post.html.erb. Cách này giả định rằng tên của partial
+        #  view trùng với tên của đối tượng được truyền vào. Điều này đơn giản hóa quá trình render và 
+        #  không đòi hỏi phải chỉ định tên partial view một cách rõ ràng. 
+      %>
+      <%#= render post %>
+      <%= render partial: 'post', locals: {post: post} %>
+      <p>
+        <%#= link_to "Show this post", post %>
+        <%= link_to "Show this post", post_path(post)%> <%# này là truyền tham số trong path %>
+      </p>
+    <% end %>
+  </div>
+  <%= link_to "New post", new_post_path , class:"btn btn-success"%>
+</div>
+<%#<%= render partial: "product", locals: { product: @product }  => render "product", product: @product %>

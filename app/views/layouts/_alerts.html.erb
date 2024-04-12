@@ -1,0 +1,9 @@
+<%if notice && alert %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+<% elsif notice %>
+  <p class="notice"><%= notice %></p>
+<% elsif alert %>
+  <p class="alert"><%= alert %></p>
+<% else %>
+<%end%>

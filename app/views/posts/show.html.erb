@@ -1,0 +1,14 @@
+<div class="container my-4">
+  <%= render @post %>
+  <div class="py-3">
+    <%= link_to "Edit this post", edit_post_path(@post) %> |
+    <%= link_to "Back to posts", posts_path %>
+    <%= button_to "Destroy this post", @post, method: :delete , class: "btn btn-danger my-3" %>
+  </div>
+</div>
+<div class="container">
+  <%= render "comments/form", post: @post %>
+  <% @comments.each do |comment| %>
+    <%= render "comments/comment", post: @post , comment: comment %>
+  <% end %>
+</div>
