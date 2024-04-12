@@ -1,3 +1,7 @@
+>> rails new Blog
+
+# tạo controller pages với 2 Action home và about 
+>> rails g controller pages home about 
 
 #rails c
 
@@ -5,22 +9,22 @@ Post.destroy_all
 rails db:seed
 
 # rails db
-rails g migration add_user_to_posts user: belongs_to
+>> rails g migration add_user_to_posts user: belongs_to
 rails db:migrate
 
 
 # them name cho user
-rails g migration add_name_to_user name
+>> rails g migration add_name_to_user name
 
 # xem views
-rails g views
-rails g devise:views
+>> rails g views
+>> rails g devise:views
 
 #tao folder controllers for users
-rails g devise:controller users
+>> rails g devise:controller users
 
 #tạo profile controller in users folder
-rails g controllers user profile
+>> rails g controllers user profile
 
 tạo ra 
 => class UsersController < ApplicationController
@@ -30,12 +34,12 @@ end
 
 
 # them views vao user
-rails g migration add_views_to_user views:integer  
+>> rails g migration add_views_to_user views:integer  
 
 
 
 # muốn thay đổi cột nào thì gõ (giã sử thay dổi views:integer trong users model)
-rails g migration change_views_for_user views:integer  
+>> rails g migration change_views_for_user views:integer  
 => sinh ra file migration , trong change mình sẽ config lại , cho default: 0
     def change
         add_column :users, :views, :integer, default: 0
