@@ -51,7 +51,17 @@ sau đó : rails  db:migrate
 
 >> rails g model comment post:belongs_to user:belongs_to
 
+# vi du ve cmd tao khoa ngoai
+>> rails generate model Comment commenter:string body:text article:references
+
 # cài Action Text trong Rails 7.... gg for free
 
 # tạo comments controller
 >> rails g controller comments
+
+
+
+# notied (link: https://github.com/excid3/noticed )
+bundle add "noticed"
+
+

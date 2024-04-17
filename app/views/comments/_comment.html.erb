@@ -19,7 +19,17 @@
           <%if comment.user == current_user %>
             <div class="btn-group">
               <%#= button_to "edit", @post, method: :delete , class: "btn btn-primary mx-2" %>
-              <%= link_to 'Edit', nil, remote: true, class:'btn btn-primary' %>
+              <%= link_to 'Edit', nil, remote: true, class:'btn btn-primary',
+              data:{
+                  controller: "comments",
+                  action: "comments#toggleForm",
+                  comments_form_param: "edit-form-#{comment.id}",
+                  # comments_form_param => comments là tên controller, form là tên biến , param là mặc định 
+                  #=> lấy ra bằng cách event.params["form"]
+                  comments_body_param: "comment-body-#{comment.id}"
+                }
+              
+               %>
               <%= button_to "delete", [post, comment], method: :delete , class: "btn btn-danger mx-2" %>
             </div>
           <% else %>
@@ -27,12 +37,16 @@
           <% end %>
         </div>
       </div>
-      <div class="comment-body-<%=comment.id%>">
+      <div id="comment-body-<%=comment.id%>" class="">
         <p><%=comment.body%></p>
       </div>
     </div>
-    <div id="edit-form<%=comment.id%>" class="px-5 d-none">
-      <%= render "comments/form", post: @post , comment: comment %>
+    <div id="edit-form-<%=comment.id%>" class="px-5 my-3 d-none">
+      <%= render "comments/form", 
+        post: @post ,
+        comment: comment,
+        submit_label: "Update"
+        %>
     </div>
   </div>
 </div>
