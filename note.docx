@@ -1,3 +1,8 @@
+# Tham khảo
+Rails Blog In VS Code-Noticed V1: https://medium.com/jungletronics/rails-blog-in-vs-code-noticed-v1-78f67a002f27
+Rails Blog In VS Code-Noticed V2: https://medium.com/jungletronics/rails-blog-in-vs-code-noticed-v2-7ab37f9d5cc4
+
+
 >> rails new Blog
 
 # tạo controller pages với 2 Action home và about 
@@ -62,6 +67,22 @@ sau đó : rails  db:migrate
 
 
 # notied (link: https://github.com/excid3/noticed )
-bundle add "noticed"
+bundle add noticed -v 1.5.7
+>> rails generate noticed:model
+      invoke  active_record
+      create    app/models/notification.rb
+      invoke    test_unit
+      create      test/models/notification_test.rb
+      create      test/fixtures/notifications.yml
+      insert  app/models/notification.rb
+      insert  db/migrate/20240419082636_create_notifications.rb
 
 
+>> rails g noticed:notification Comment
+      create  app/notifications/comment.rb
+     
+>> rails g noticed:notification CommentNotification
+      create  app/notifications/comment_notification.rb
+
+>> rails c 
+>> Notification.all
