@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search', to: 'search#index'
   get 'users/profile'
   devise_for :users, controllers:{
     session:"users/sessions",
@@ -9,7 +10,6 @@ Rails.application.routes.draw do
   resources :posts do 
     resources :comments
   end
-
 
   #get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'

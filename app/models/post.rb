@@ -16,5 +16,14 @@ class Post < ApplicationRecord
 # Điều này cho phép model Post có khả năng tạo ra và nhận các thông báo (notifications) thông qua gem Noticed.
   
     has_noticed_notifications model_name:"Notification"
+    def self.ransackable_attributes(auth_object = nil)
+        ["body", "title"]
+    end
 
+    # Chỉ có một mối quan hệ được liệt kê là "user". 
+    # Điều này có nghĩa là Ransack có thể tìm kiếm các bản ghi trong mô hình Post dựa trên 
+    # các giá trị trong mối quan hệ "user".
+    def self.ransackable_associations(auth_object = nil)
+        ["user"]
+    end
 end

@@ -16,10 +16,9 @@
           <%= link_to 'About', about_path, class:"nav-link" %>
         </li>
       </ul>
+      <%= render 'search/form'%>
       <ul class="navbar-nav">
         <%= render 'layouts/notifications' %>
-      </ul>
-      <ul class="navbar-nav">
         <%= render 'user/session_manager' %>
       </ul>
     </div>
