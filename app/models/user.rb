@@ -7,7 +7,12 @@ class User < ApplicationRecord
     has_many :comments, dependent: :destroy  #{ delete post => delete comment }
     has_many :notifications, as: :recipient , dependent: :destroy
 
-    def self.ransackable_attributes(auth_object = nil)
-      ["email", "name"]
-    end
+    enum role: [:user, :admin]
+
+    after_initialize :set_default_role, if: :new_record?
+
+    private 
+    def set_default_role
+      self.role ||= :user
+    end 
 end

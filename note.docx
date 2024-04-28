@@ -104,6 +104,19 @@ bundle add noticed -v 1.5.7
 
 
 # ============================ gem ransack để search trong rails
+
 document : https://activerecord-hackery.github.io/ransack/getting-started/search-matches/
 >> bundle add ransack
 >> rails g controller search index
+
+
+# ============================  Admin Dashboard and Improve Searches
+
+>> rails g migration add_role_to_user role:integer
+>> rails g migration remove_body_from_post
+
+
+# ============================  Admin Dashboard controller
+
+>> rails g controller admin index posts comments user show_post
+

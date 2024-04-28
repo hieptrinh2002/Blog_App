@@ -15,7 +15,7 @@
       <%@posts.each do |post| %>
         <tr>
           <th scope="row"> <%= link_to post.title, post %></th>
-          <th scope="row"> <%= post.body.truncate_words(25) %></th>
+          <th scope="row"> <%= post.body.to_plain_text.truncate_words(25) %></th>
           <th scope="row"> <%= link_to post.user.name, post.user %></th>
           <th scope="row"> <%= post.user.email %></th>
         </tr>

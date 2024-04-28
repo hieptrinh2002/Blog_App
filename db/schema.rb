@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_19_082636) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_28_095204) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -50,38 +50,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_082636) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "user"
-    t.string "belongs_to"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "post_id", null: false
     t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "noticed_events", force: :cascade do |t|
-    t.string "type"
-    t.string "record_type"
-    t.bigint "record_id"
-    t.json "params"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "notifications_count"
-    t.index ["record_type", "record_id"], name: "index_noticed_events_on_record"
-  end
-
-  create_table "noticed_notifications", force: :cascade do |t|
-    t.string "type"
-    t.bigint "event_id", null: false
-    t.string "recipient_type", null: false
-    t.bigint "recipient_id", null: false
-    t.datetime "read_at", precision: nil
-    t.datetime "seen_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_noticed_notifications_on_event_id"
-    t.index ["recipient_type", "recipient_id"], name: "index_noticed_notifications_on_recipient"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -98,7 +72,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_082636) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "views", default: 0
@@ -116,6 +89,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_082636) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.integer "views", default: 0
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
