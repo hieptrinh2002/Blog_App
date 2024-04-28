@@ -1,0 +1,11 @@
+<%= search_form_for(@query, url: search_path, method: :get, class: 'd-flex mx-4') do |f| %>
+  <%= f.search_field :title_or_body_or_user_email_or_user_name_i_cont_any, 
+    placeholder: "Search...",
+    class:"form-control me-2" 
+  %>
+  <%= f.submit "Search!", class:"btn btn-outline-success" %>
+<% end %>
+<%#
+# Đối số của f.search_fieldphải ở dạng này: attribute_name[_or_attribute_name]..._predicate
+"cont" : Contains value	- uses LIKE
+%>  

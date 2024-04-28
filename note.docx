@@ -1,34 +1,42 @@
-# Tham khảo
+# ========================= Tham khảo
+
 Rails Blog In VS Code-Noticed V1: https://medium.com/jungletronics/rails-blog-in-vs-code-noticed-v1-78f67a002f27
 Rails Blog In VS Code-Noticed V2: https://medium.com/jungletronics/rails-blog-in-vs-code-noticed-v2-7ab37f9d5cc4
 
 
 >> rails new Blog
 
-# tạo controller pages với 2 Action home và about 
+# ============================ tạo controller pages với 2 Action home và about 
+
 >> rails g controller pages home about 
 
-#rails c
+# ============================rails c
+
 
 Post.destroy_all
 rails db:seed
 
-# rails db
+# ============================ rails db
+
 >> rails g migration add_user_to_posts user: belongs_to
 rails db:migrate
 
 
-# them name cho user
+# ============================ them name cho user
+
 >> rails g migration add_name_to_user name
 
-# xem views
+# ============================ xem views
+
 >> rails g views
 >> rails g devise:views
 
-#tao folder controllers for users
+# ============================tao folder controllers for users
+
 >> rails g devise:controller users
 
-#tạo profile controller in users folder
+# ============================ tạo profile controller in users folder
+
 >> rails g controllers user profile
 
 tạo ra 
@@ -38,12 +46,14 @@ tạo ra
 end
 
 
-# them views vao user
+# ============================ them views vao user
+
 >> rails g migration add_views_to_user views:integer  
 
 
 
-# muốn thay đổi cột nào thì gõ (giã sử thay dổi views:integer trong users model)
+# ============================ muốn thay đổi cột nào thì gõ (giã sử thay dổi views:integer trong users model)
+
 >> rails g migration change_views_for_user views:integer  
 => sinh ra file migration , trong change mình sẽ config lại , cho default: 0
     def change
@@ -52,21 +62,26 @@ end
 sau đó : rails  db:migrate 
 
 
-# thêm model comments và tạo khóa ngoại đến các model khác
+# ============================ thêm model comments và tạo khóa ngoại đến các model khác
+
 
 >> rails g model comment post:belongs_to user:belongs_to
 
-# vi du ve cmd tao khoa ngoai
+# ============================ vi du ve cmd tao khoa ngoai
+
 >> rails generate model Comment commenter:string body:text article:references
 
-# cài Action Text trong Rails 7.... gg for free
+# ============================ cài Action Text trong Rails 7.... gg for free
 
-# tạo comments controller
+
+# ============================ tạo comments controller
+
 >> rails g controller comments
 
 
 
-# notied (link: https://github.com/excid3/noticed )
+# ============================ notied (link: https://github.com/excid3/noticed )
+
 bundle add noticed -v 1.5.7
 >> rails generate noticed:model
       invoke  active_record
@@ -86,3 +101,9 @@ bundle add noticed -v 1.5.7
 
 >> rails c 
 >> Notification.all
+
+
+# ============================ gem ransack để search trong rails
+document : https://activerecord-hackery.github.io/ransack/getting-started/search-matches/
+>> bundle add ransack
+>> rails g controller search index
