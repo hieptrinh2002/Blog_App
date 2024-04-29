@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+
+    extend FriendlyId
     validates :title, presence: true, length:{ minimum: 5 , maximum: 100 }
     validates :body, presence: true, length:{ minimum:10 }
     belongs_to :user
@@ -6,7 +8,6 @@ class Post < ApplicationRecord
 
     has_rich_text :body
     has_one :content, class_name: "ActionText::Richtext", as: :record, dependent: :destroy
-
     
     # Dòng này thiết lập mối quan hệ has_many giữa model Post và model Notification.
     # Qua đó, mỗi đối tượng Post có thể có nhiều đối tượng Notification liên quan.
@@ -19,10 +20,18 @@ class Post < ApplicationRecord
     # Dòng này sử dụng phương thức has_noticed_notifications của gem Noticed để thiết lập mối quan hệ giữa 
     #   model Post và model Notifications.
     # Điều này cho phép model Post có khả năng tạo ra và nhận các thông báo (notifications) thông qua gem Noticed.
-    
     has_noticed_notifications model_name:"Notification"
-    # Chỉ có một mối quan hệ được liệt kê là "user". 
-    # Điều này có nghĩa là Ransack có thể tìm kiếm các bản ghi trong mô hình Post dựa trên 
-    # các giá trị trong mối quan hệ "user".
 
+    friendly_id :title, use: %i[slugged history finders]  #{ p %i[slugged] -> [:plugged] }. 
+    # Có finders sẽ không cần .friendly nữa  
+    #post = Post.friendly.find(params[:post_id]) -> @post = Post.find(params[:post_id])
+
+
+    # Bất cư khi nào titte change -> true , nó sẽ genarate friendlyId dựa trên title hoặc sẽ grenarate friendlyId khi
+    # slug blank
+    # title_changed sẽ hoạt động kho thêm mới một new post
+    # slug.blank sẽ hoạt động khi okie, tôi cần generate ra một friendlyId ti set equal to title
+    def should_generate_new_friendly_id?
+        title_changed? || slug.blank?
+    end
 end
