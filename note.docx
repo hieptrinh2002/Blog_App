@@ -120,3 +120,4 @@ document : https://activerecord-hackery.github.io/ransack/getting-started/search
 
 >> rails g controller admin index posts comments user show_post
 
+kakakaka
