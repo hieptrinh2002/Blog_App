@@ -6,9 +6,9 @@ Rails Blog In VS Code-Noticed V2: https://medium.com/jungletronics/rails-blog-in
 
 >> rails new Blog
 
-# ============================ tạo controller pages với 2 Action home và about 
+# ============================ tạo controller pages với 2 Action home và about
 
->> rails g controller pages home about 
+>> rails g controller pages home about
 
 # ============================rails c
 
@@ -39,7 +39,7 @@ rails db:migrate
 
 >> rails g controllers user profile
 
-tạo ra 
+tạo ra
 => class UsersController < ApplicationController
   def profile
   end
@@ -48,18 +48,18 @@ end
 
 # ============================ them views vao user
 
->> rails g migration add_views_to_user views:integer  
+>> rails g migration add_views_to_user views:integer
 
 
 
 # ============================ muốn thay đổi cột nào thì gõ (giã sử thay dổi views:integer trong users model)
 
->> rails g migration change_views_for_user views:integer  
+>> rails g migration change_views_for_user views:integer
 => sinh ra file migration , trong change mình sẽ config lại , cho default: 0
     def change
         add_column :users, :views, :integer, default: 0
     end
-sau đó : rails  db:migrate 
+sau đó : rails  db:migrate
 
 
 # ============================ thêm model comments và tạo khóa ngoại đến các model khác
@@ -95,11 +95,11 @@ bundle add noticed -v 1.5.7
 
 >> rails g noticed:notification Comment
       create  app/notifications/comment.rb
-     
+
 >> rails g noticed:notification CommentNotification
       create  app/notifications/comment_notification.rb
 
->> rails c 
+>> rails c
 >> Notification.all
 
 
@@ -126,7 +126,7 @@ document : https://activerecord-hackery.github.io/ransack/getting-started/search
 >> rails g migration AddSlugToPosts slug:uniq
 >> rails g friendly_id
 
-If you're adding FriendlyId to an existing app and need to generate slugs for existing users, 
+If you're adding FriendlyId to an existing app and need to generate slugs for existing users,
 do this from the console, runner, or add a Rake task:
 -> nếu đã có sẳn data trong app rồi thì phải chạy Post.find_each(&:save) để set lại slug cho tất cả các post thì mới xài được
 /pots/title-n..
@@ -138,6 +138,6 @@ FriendlyId's History module adds the ability to store a log of a model's slug
 
 document: https://www.rubydoc.info/github/norman/friendly_id/FriendlyId/History
 đe
-đê
-đê
-
+đ
+dêde
+edede
