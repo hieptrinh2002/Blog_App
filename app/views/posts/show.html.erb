@@ -7,8 +7,16 @@
   </div>
 </div>
 <div class="container">
-  <%= render "comments/form", post: @post %>
+  <%= render "comments/form",
+    post: @post,
+    comment: @post.comments.build ,
+    submit_label:"Reply"
+    %>
   <% @comments.each do |comment| %>
-    <%= render "comments/comment", post: @post , comment: comment %>
+    <%= render "comments/comment", post: @post , comment: comment ,  submit_label:"Reply"%>
   <% end %>
 </div>
+<%#
+mô hình Post có mối quan hệ has_many với mô hình Comment, 
+bạn có thể sử dụng @post.comments.build để tạo một đối tượng Comment mới được liên kết với post đó
+%>

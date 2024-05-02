@@ -1,0 +1,30 @@
+<div class="alert alert-info container">
+  <%= pluralize(@posts.count, "Result") %>
+</div>
+<div class="container">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col"><%= sort_link(@query, :title, 'Title', default_order: :asc) %></th>
+        <th scope="col"><%= sort_link(@query, :body, 'Body', default_order: :asc) %></th>
+        <th scope="col"><%= sort_link(@query, :user_name, 'Users', default_order: :asc) %></th>
+        <th scope="col"><%= sort_link(@query, :user_email, 'Email', default_order: :asc) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@posts.each do |post| %>
+        <tr>
+          <th scope="row"> <%= link_to post.title, post %></th>
+          <th scope="row"> <%= post.body.to_plain_text.truncate_words(25) %></th>
+          <th scope="row"> <%= link_to post.user.name, post.user %></th>
+          <th scope="row"> <%= post.user.email %></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%#
+Trong Ruby on Rails, phương thức link_to có thể nhận một đối tượng làm tham số và tự động xây dựng đường dẫn dựa trên đối tượng đó. 
+Khi bạn truyền một đối tượng người dùng (ví dụ: post.user) làm giá trị của link_to,
+Rails sẽ sử dụng đối tượng này để xác định đường dẫn.
+%>

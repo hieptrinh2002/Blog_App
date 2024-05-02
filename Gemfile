@@ -68,3 +68,9 @@ end
 
 
 gem "devise"
+
+gem "noticed", "= 1.5.7"
+
+gem "ransack", "~> 4.1"
+
+gem "friendly_id", "~> 5.5"
